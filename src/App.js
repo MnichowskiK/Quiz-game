@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import QuizPage from "./Components/QuizPage";
+import Welcome from "./Components/Welcome";
+import styled from "styled-components";
+import Example from './Components/Modal'
+import { ThemeProvider } from "styled-components";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Fib from "./Fib";
+
 
 function App() {
+  const [isStarted, setIsStarted] = useState(false);
+
+  const Container = styled.div`
+background-color: ${({ theme }) => theme.colors.footer};
+font-size: ${({ dupa }) => dupa ? '50px' : '10px'
+
+    };
+`
+  const theme = {
+    colors: {
+      body: '#444',
+      footer: '#040430',
+    },
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        {!isStarted && <Welcome isStarted={{ isStarted, setIsStarted }} />}
+        {isStarted && <QuizPage />}
+        <Container dupa className='container '>Dupa</Container>
+        <Example ></Example>
+        <Fib />
+      </div>
+    </ThemeProvider>
   );
 }
 
