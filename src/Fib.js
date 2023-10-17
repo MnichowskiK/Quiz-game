@@ -20,7 +20,7 @@ function Fib() {
 
   }
 
-
+  console.log('dupa')
   ///////////////
 
   function openOrSenior(data) {
