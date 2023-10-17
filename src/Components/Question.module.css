@@ -1,0 +1,30 @@
+.category{
+    font-size: 0.8rem;
+    color: rgb(190, 190, 190);
+    margin-top: 0.5rem;
+}
+
+.question_container {
+    margin-bottom:2rem;
+    padding-bottom:3rem;
+}
+
+.question_number {
+    color:#e0e0e0;
+ margin-bottom: 0;
+}
+
+.feedback {
+    font-size: 1rem;
+}
+
+.correct {
+    color: #2ea644;
+}
+.incorrect {
+    color: #e63720;
+}
+
+.question {
+    font-size: 1.5rem;
+}
