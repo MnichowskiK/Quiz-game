@@ -14,10 +14,10 @@ function QuizPage() {
   const getQuestions = async () => {
     try {
       const res = await fetch(
-        "https://opentdb.com/api.php?amount=5&type=multiple"
+        "https://the-trivia-api.com/v2/questions"
       );
       const data = await res.json();
-      setQuestions(data.results);
+      setQuestions(data);
       setLoading(false);
     } catch (error) {
       console.log("Error fetching questions:", error);
@@ -38,13 +38,23 @@ function QuizPage() {
     }
   };
 
+  const convertText = (inputText) => {
+    let words = inputText.split('_');
+    words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+    const result = words.join(' ');
+
+    return result;
+  }
+
+
+
   const submitQuiz = () => {
     setAnswerSubmitted(true);
     setQuizCompleted(true);
 
     const correctAnswersCount = questions.reduce((count, question, index) => {
       const selectedAnswer = selectedAnswers[index];
-      const isCorrect = selectedAnswer === question.correct_answer;
+      const isCorrect = selectedAnswer === question.correctAnswer;
       return isCorrect ? count + 1 : count;
     }, 0);
 
@@ -62,10 +72,10 @@ function QuizPage() {
     <Question
       key={index}
       id={index}
-      category={question.category}
-      question={question.question}
-      incorrectAnswers={question.incorrect_answers}
-      correctAnswer={question.correct_answer}
+      category={convertText(question.category)}
+      question={question.question.text}
+      incorrectAnswers={question.incorrectAnswers}
+      correctAnswer={question.correctAnswer}
       selectedAnswer={selectedAnswers[index]}
       answerSubmitted={answerSubmitted}
       quizCompleted={quizCompleted}
@@ -75,7 +85,7 @@ function QuizPage() {
 
   const correctAnswersCount = questions.reduce((count, question, index) => {
     const selectedAnswer = selectedAnswers[index];
-    const isCorrect = selectedAnswer === question.correct_answer;
+    const isCorrect = selectedAnswer === question.correctAnswer;
     return isCorrect ? count + 1 : count;
   }, 0);
 
@@ -90,8 +100,8 @@ function QuizPage() {
   return (
     <div className={classes.container}>
       <Link to={"/"} className="back"><span className="material-symbols-outlined">
-arrow_back
-</span> Main page</Link>
+        arrow_back
+      </span> Main page</Link>
       <h1>QuizPage</h1>
       {loading ? (
         <>
