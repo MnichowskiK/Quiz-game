@@ -1,5 +1,5 @@
 <h2><strong>Description</strong></h2>
-<p>This website allows you to play a quiz game, consisting of 5 randomly picked questions. After submiting your answers you will be informed how many of your answers were correct. The results are being saved and are presented to the user on My results page.</p>
+<p>This website allows you to play a quiz game, consisting of 10 randomly picked questions. After submiting your answers you will be informed how many of your answers were correct. The results are being saved and are presented to the user on My results page.</p>
 <h2><strong>Technology</strong></h2>
 <ul>
   <li>React</li>
